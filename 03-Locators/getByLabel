@@ -1,0 +1,30 @@
+getByLabel
+
+Allows locating input elements by the text of the associated <label> or aria-labelledby element, or by the aria-label attribute.
+
+Usage
+
+For example, this method will find inputs by label "Username" and "Password" in the following DOM:
+
+<input aria-label="Username">
+<label for="password-input">Password:</label>
+<input id="password-input">
+
+await page.getByLabel('Username').fill('john');
+await page.getByLabel('Password').fill('secret');
+
+Arguments
+
+text string | RegExp#
+
+Text to locate the element for.
+
+options Object (optional)
+
+exact boolean (optional)#
+
+Whether to find an exact match: case-sensitive and whole-string. Default to false. Ignored when locating by a regular expression. Note that exact match still trims whitespace.
+
+Returns
+
+Locator#
