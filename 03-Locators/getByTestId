@@ -1,0 +1,36 @@
+getByTestId
+
+Locate element by the test id.
+
+Usage
+
+Consider the following DOM structure.
+
+<button data-testid="directions">Itinéraire</button>
+
+You can locate the element by its test id:
+
+await page.getByTestId('directions').click();
+
+Arguments
+
+testId string | RegExp#
+
+Id to locate the element by.
+
+Returns
+
+Locator#
+Details
+
+By default, the data-testid attribute is used as a test id. Use selectors.setTestIdAttribute() to configure a different test id attribute if necessary.
+
+// Set custom test id attribute from @playwright/test config:
+import { defineConfig } from '@playwright/test';
+
+export default defineConfig({
+  use: {
+    testIdAttribute: 'data-pw'
+  },
+});
+
