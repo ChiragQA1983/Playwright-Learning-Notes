@@ -1,0 +1,31 @@
+getByPlaceholder
+
+Allows locating input elements by the placeholder text.
+
+Usage
+
+For example, consider the following DOM structure.
+
+<input type="email" placeholder="name@example.com" />
+
+You can fill the input after locating it by the placeholder text:
+
+await page
+    .getByPlaceholder('name@example.com')
+    .fill('playwright@microsoft.com');
+
+Arguments
+
+text string | RegExp#
+
+Text to locate the element for.
+
+options Object (optional)
+
+exact boolean (optional)#
+
+Whether to find an exact match: case-sensitive and whole-string. Default to false. Ignored when locating by a regular expression. Note that exact match still trims whitespace.
+
+Returns
+
+Locator#
