@@ -21,8 +21,6 @@ This repository contains my personal Playwright learning notes, real-time exampl
 - Alerts
 - File Upload
 - File Download
-- API Testing
-- Network
 - Hooks
 - Fixtures
 - Regular Expressions (Regex)
