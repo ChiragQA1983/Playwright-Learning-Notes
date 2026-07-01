@@ -1,0 +1,27 @@
+getByAltText
+
+Allows locating elements by their alt text.
+
+Usage
+
+For example, this method will find the image by alt text "Playwright logo":
+
+<img alt='Playwright logo'>
+
+await page.getByAltText('Playwright logo').click();
+
+Arguments
+
+text string | RegExp#
+
+Text to locate the element for.
+
+options Object (optional)
+
+exact boolean (optional)#
+
+Whether to find an exact match: case-sensitive and whole-string. Default to false. Ignored when locating by a regular expression. Note that exact match still trims whitespace.
+
+Returns
+
+Locator#
