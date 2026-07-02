@@ -1,0 +1,238 @@
+# ✍️ Playwright Actions - Fill
+
+## 📌 Fill Action
+
+The `fill()` method is used to enter text into an editable input field or textarea. Before entering the new value, Playwright automatically clears any existing text in the field.
+
+It is one of the most commonly used methods for automating login forms, registration forms, search boxes, and other text input fields.
+
+---
+
+# Syntax
+
+```javascript
+await page.locator('locator').fill('text');
+```
+
+or
+
+```javascript
+await page.fill('locator', 'text');
+```
+
+> ✅ **Recommended:** Use `locator().fill()` because it is more reliable, reusable, and supports Playwright's auto-waiting mechanism.
+
+---
+
+# Example 1: Fill Username
+
+```javascript
+import { test } from '@playwright/test';
+
+test('Fill Username', async ({ page }) => {
+
+    await page.goto('https://example.com/login');
+
+    await page.locator('#username').fill('admin');
+
+});
+```
+
+---
+
+# Example 2: Fill Multiple Fields
+
+```javascript
+await page.locator('#username').fill('admin');
+
+await page.locator('#password').fill('Admin@123');
+
+await page.locator('#email').fill('admin@example.com');
+```
+
+---
+
+# Example 3: Fill Using Different Locators
+
+### By ID
+
+```javascript
+await page.locator('#username').fill('John');
+```
+
+### By Placeholder
+
+```javascript
+await page.getByPlaceholder('Enter Username').fill('John');
+```
+
+### By Label
+
+```javascript
+await page.getByLabel('Username').fill('John');
+```
+
+### By Role
+
+```javascript
+await page.getByRole('textbox').fill('John');
+```
+
+### By CSS Selector
+
+```javascript
+await page.locator('input[name="username"]').fill('John');
+```
+
+---
+
+# Fill Textarea
+
+```javascript
+await page.locator('#comments').fill(
+    'This is my feedback.'
+);
+```
+
+---
+
+# Clear Existing Text
+
+Since `fill()` automatically clears existing text before entering a new value, it can also be used to replace text.
+
+```javascript
+await page.locator('#username').fill('NewUser');
+```
+
+---
+
+# Clear a Field Completely
+
+Pass an empty string to remove all text from the input.
+
+```javascript
+await page.locator('#username').fill('');
+```
+
+---
+
+# Fill After Waiting
+
+Playwright automatically waits for the element to become ready before filling it.
+
+```javascript
+await page.locator('#username').fill('Admin');
+```
+
+No explicit wait is required in most cases.
+
+---
+
+# Verify Filled Value
+
+```javascript
+await page.locator('#username').fill('John');
+
+await expect(page.locator('#username'))
+    .toHaveValue('John');
+```
+
+---
+
+# Difference Between `fill()` and `type()`
+
+| Feature | fill() | type() |
+|----------|--------|---------|
+| Clears existing text | ✅ Yes | ❌ No |
+| Types character by character | ❌ No | ✅ Yes |
+| Faster | ✅ Yes | ❌ Slightly slower |
+| Simulates real typing | ❌ No | ✅ Yes |
+| Best for forms | ✅ Yes | ⚠️ Only when typing behavior matters |
+
+### Example
+
+```javascript
+await page.locator('#username').fill('Admin');
+```
+
+```javascript
+await page.locator('#username').type('Admin');
+```
+
+---
+
+# Best Practices
+
+✅ Prefer `locator.fill()` over `page.fill()`.
+
+✅ Use user-friendly locators like `getByRole()`, `getByLabel()`, and `getByPlaceholder()` whenever possible.
+
+✅ Use `fill()` for forms, login pages, search boxes, and textareas.
+
+✅ Avoid using `waitForTimeout()` before calling `fill()`.
+
+✅ Verify the entered value using assertions when validating form inputs.
+
+---
+
+# Common Interview Questions
+
+### Q1. What is the purpose of `fill()`?
+
+**Answer:**
+
+`fill()` enters text into an input field or textarea after automatically clearing any existing value.
+
+---
+
+### Q2. Does `fill()` clear existing text?
+
+**Answer:**
+
+Yes. It removes the existing text before entering the new value.
+
+---
+
+### Q3. Which is faster: `fill()` or `type()`?
+
+**Answer:**
+
+`fill()` is generally faster because it sets the value directly instead of typing one character at a time.
+
+---
+
+### Q4. When should you use `type()` instead of `fill()`?
+
+**Answer:**
+
+Use `type()` when you need to simulate real user typing, such as testing auto-suggestions, keypress events, or typing delays.
+
+---
+
+### Q5. Does Playwright automatically wait before filling a field?
+
+**Answer:**
+
+Yes. Playwright automatically waits until the element is visible, enabled, editable, and ready for interaction.
+
+---
+
+# Summary
+
+| Method | Purpose |
+|--------|---------|
+| `fill()` | Enters text after clearing existing content |
+| `fill('')` | Clears the input field |
+| `toHaveValue()` | Verifies the entered value |
+| `locator.fill()` | Recommended approach |
+| `page.fill()` | Alternate approach |
+
+---
+
+# Key Points
+
+- `fill()` is used for input fields and textareas.
+- Existing text is automatically cleared.
+- It is faster than `type()`.
+- Playwright automatically waits for the element to become editable.
+- Prefer `locator.fill()` for better readability and reliability.
