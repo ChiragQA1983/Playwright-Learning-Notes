@@ -50,5 +50,8 @@ div:nth-of-type(2)
 10. not()
 input:not([disabled])
 
+11. input:checked
+input:checked
+
 
 
