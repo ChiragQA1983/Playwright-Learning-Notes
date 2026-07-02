@@ -1,0 +1,24 @@
+1. Multiple Classes
+
+HTML :
+<button class="btn primary login">
+
+CSS :
+.btn.primary.login
+
+Playwright
+e.g. -> await page.locator(".btn.primary.login").click();
+
+2. Partial Attribute Match
+
+Starts With
+input[id^='user']
+
+Ends With
+input[id$='name']
+
+Contains
+input[id*='user']
+
+Playwright
+e.g. -> await page.locator("input[id*='user']").fill("Admin");
