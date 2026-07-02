@@ -22,3 +22,15 @@ input[id*='user']
 
 Playwright
 e.g. -> await page.locator("input[id*='user']").fill("Admin");
+
+3. Multiple Attribute Matching
+
+input[type='text'][name='username']
+
+4. Parent → Child
+CSS ->
+form input
+
+5. Direct Child
+CSS ->
+form > input
