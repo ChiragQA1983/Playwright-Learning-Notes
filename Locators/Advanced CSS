@@ -53,5 +53,8 @@ input:not([disabled])
 11. input:checked
 input:checked
 
+12. Empty Element
+div:empty
+
 
 
