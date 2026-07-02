@@ -47,5 +47,8 @@ tbody tr:nth-child(4)
 9. nth-of-type()
 div:nth-of-type(2)
 
+10. not()
+input:not([disabled])
+
 
 
