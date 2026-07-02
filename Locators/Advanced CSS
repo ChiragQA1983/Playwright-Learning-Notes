@@ -34,3 +34,10 @@ form input
 5. Direct Child
 CSS ->
 form > input
+
+6. Adjacent Sibling
+label + input
+
+7. General Sibling
+label ~ input
+
