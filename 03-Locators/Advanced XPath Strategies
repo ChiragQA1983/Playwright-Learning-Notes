@@ -1,0 +1,131 @@
+XPath Contains
+//button[contains(text(),'Login')]
+
+Starts With
+//input[starts-with(@id,'user')]
+Ends With (XPath 2.0 only)
+Not supported in most browser XPath engines.
+
+Alternative
+
+//*[contains(@id,'name')]
+
+Multiple Conditions
+//input[@type='text' and @name='username']
+OR Condition
+//button[@id='login' or @name='login']
+
+Parent
+//input/parent::div
+Child
+//div/child::input
+Ancestor
+//button/ancestor::form
+Descendant
+//form/descendant::button
+Following
+//label/following::input
+Following Sibling
+//label/following-sibling::input
+Preceding
+//input/preceding::label
+Preceding Sibling
+//input/preceding-sibling::label
+Last Element
+(//button)[last()]
+Position
+(//button)[2]
+Normalize Space
+//button[normalize-space()='Login']
+Dynamic XPath
+//button[contains(@id,'login')]
+Advanced Playwright Filtering
+
+These are Playwright-specific locator strategies that you'll use frequently in real projects.
+
+Filter by Text
+await page
+.locator(".product")
+.filter({ hasText: "iPhone" })
+.click();
+
+Filter by Child Element
+await page
+.locator(".card")
+.filter({
+    has: page.locator("button")
+})
+.click();
+has()
+page.locator("article", {
+    has: page.locator("img")
+});
+hasText()
+page.locator("tr", {
+    hasText: "Admin"
+});
+first()
+page.locator(".product").first()
+last()
+page.locator(".product").last()
+nth()
+page.locator(".product").nth(3)
+Locator Chaining
+page
+.locator("table")
+.locator("tbody")
+.locator("tr")
+.nth(2)
+.locator("button")
+.click();
+and()
+page
+.getByRole("button")
+.and(page.getByTitle("Save"));
+or()
+page
+.getByRole("button", { name: "Save" })
+.or(page.getByText("Submit"));
+DOM Traversing
+
+Example HTML
+
+<div class="card">
+
+    <h2>iPhone 16</h2>
+
+    <button>Add to Cart</button>
+
+</div>
+
+Locate Add to Cart button for iPhone
+
+page
+.locator(".card")
+.filter({
+    hasText: "iPhone 16"
+})
+.getByRole("button")
+.click();
+
+This is far more robust than relying on indexes.
+
+Dynamic Table
+<table>
+<tr>
+<td>Admin</td>
+<td>Active</td>
+<td>
+
+<button>Edit</button>
+</td>
+</tr>
+</table>
+Click Edit for Admin
+page
+.locator("tr")
+.filter({
+    hasText: "Admin"
+})
+.getByRole("button")
+.click();
