@@ -56,5 +56,13 @@ input:checked
 12. Empty Element
 div:empty
 
+13. Enabled
+button:enabled
+
+14. Disabled
+button:disabled
+
+15. Focus
+input:focus
 
 
